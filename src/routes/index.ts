@@ -1,0 +1,21 @@
+import { Router } from "express";
+import healthRouter from "./health";
+import studentsRouter from "./students";
+import sessionsRouter from "./sessions";
+import transactionsRouter from "./transactions";
+import goalsRouter from "./goals";
+import fxRouter from "./fx";
+import productsRouter from "./products";
+import financeRouter from "./finance";
+import schemaRouter from "./schema";
+
+export const router: Router = Router();
+router.use(healthRouter);
+router.use(studentsRouter);
+router.use(sessionsRouter);
+router.use(transactionsRouter);
+router.use(goalsRouter);
+router.use(fxRouter);
+router.use(productsRouter);
+router.use(financeRouter);
+router.use(schemaRouter);

@@ -1,0 +1,18 @@
+# Render deployment manifest for Atlas Backend.
+# Push this folder (alone) to a Git repo, then in Render: New -> Blueprint -> connect repo.
+services:
+  - type: web
+    name: atlas-backend
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build && npx prisma db push --accept-data-loss
+    startCommand: npm start
+    healthCheckPath: /api/healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATABASE_URL
+        sync: false # paste your Neon pooled connection string in the Render dashboard
+      - key: CORS_ORIGIN
+        sync: false # e.g. https://your-admin.replit.app  (or "*")
